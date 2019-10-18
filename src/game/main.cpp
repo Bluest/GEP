@@ -2,8 +2,11 @@
 
 int main()
 {
-	std::cout << "Hello, world!" << std::endl;
-	std::cin.get();
+	std::cout << "START" << std::endl;
 
+	// smart pointer to application = application::init();
+	// application->run
+
+	std::cout << "END" << std::endl;
 	return 0;
 }
