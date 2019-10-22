@@ -1,3 +1,4 @@
+#include <MMG/MMG.h>
 #include <iostream>
 
 int main()
@@ -6,6 +7,10 @@ int main()
 
 	// smart pointer to application = application::init();
 	// application->run
+
+	// Entity testEntity;
+	// testEntity.addComponent<testComponent>();
+	// testEntity.update();
 
 	std::cout << "END" << std::endl;
 	return 0;

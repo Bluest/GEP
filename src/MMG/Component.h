@@ -1,3 +1,6 @@
+#ifndef _COMPONENT_H_
+#define _COMPONENT_H_
+
 #include <memory>
 
 class Entity;
@@ -10,3 +13,5 @@ private:
 public:
 	std::shared_ptr<Entity> getEntity();
 };
+
+#endif

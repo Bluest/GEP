@@ -1,5 +1,8 @@
-#include <memory>
+#ifndef _ENTITY_H_
+#define _ENTITY_H_
+
 #include <list>
+#include <memory>
 
 class Component;
 class Application;
@@ -16,3 +19,5 @@ public:
 	template <class T>
 	std::shared_ptr<T> addComponent(T _component);
 };
+
+#endif
