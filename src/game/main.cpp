@@ -1,4 +1,4 @@
-#include <MMG/MMG.h>
+#include <MMG.h>
 #include <iostream>
 
 int main()
