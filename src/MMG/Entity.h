@@ -13,6 +13,10 @@ private:
 	std::list<std::shared_ptr<Component>> components;
 	std::weak_ptr<Core> core;
 
+	void start();
+	void update();
+	void draw();
+
 public:
 	std::shared_ptr<Core> getCore();
 

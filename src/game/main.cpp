@@ -12,7 +12,8 @@ int main()
 
 	core->run();
 
-	core->quit();
+	// Cleanup
+
 	std::cout << "END" << std::endl;
 	return 0;
 }
