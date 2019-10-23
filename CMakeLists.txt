@@ -7,8 +7,8 @@ include_directories(
 
 add_library(MMG
 	src/MMG/MMG.h
-	src/MMG/Application.h
-	src/MMG/Application.cpp
+	src/MMG/Core.h
+	src/MMG/Core.cpp
 	src/MMG/Entity.h
 	src/MMG/Entity.cpp
 	src/MMG/Component.h

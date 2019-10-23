@@ -5,16 +5,16 @@
 #include <memory>
 
 class Component;
-class Application;
+class Core;
 
 class Entity
 {
 private:
 	std::list<std::shared_ptr<Component>> components;
-	std::weak_ptr<Application> application;
+	std::weak_ptr<Core> core;
 
 public:
-	std::shared_ptr<Application> getApplication();
+	std::shared_ptr<Core> getCore();
 
 	template <class T>
 	std::shared_ptr<T> addComponent(T _component);

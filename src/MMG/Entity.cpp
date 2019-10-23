@@ -1,8 +1,8 @@
 #include "Entity.h"
 
-std::shared_ptr<Application> Entity::getApplication()
+std::shared_ptr<Core> Entity::getCore()
 {
-	return application.lock();
+	return core.lock();
 }
 
 template <class T>

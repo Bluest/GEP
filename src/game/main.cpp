@@ -4,14 +4,15 @@
 int main()
 {
 	std::cout << "START" << std::endl;
-
-	// smart pointer to application = application::init();
-	// application->run
+	std::shared_ptr<Core> core = Core::init();
+	// Why not just "Core core;" with a constructor?
 
 	// Entity testEntity;
 	// testEntity.addComponent<testComponent>();
-	// testEntity.update();
 
+	core->run();
+
+	core->quit();
 	std::cout << "END" << std::endl;
 	return 0;
 }
