@@ -10,8 +10,8 @@ class Component
 private:
 	std::weak_ptr<Entity> entity;
 
-	virtual void start() = 0;
-	virtual void update() = 0;
+	virtual void onStart() = 0;
+	virtual void onUpdate() = 0;
 
 public:
 	std::shared_ptr<Entity> getEntity();

@@ -27,9 +27,9 @@ std::shared_ptr<Core> Entity::getCore()
 }
 
 template <class T>
-std::shared_ptr<T> Entity::addComponent(T _component)
+std::shared_ptr<T> Entity::addComponent()
 {
-	std::shared_ptr<T> component;
+	std::shared_ptr<T> component = std::make_shared<T>;
 
 	return component;
 }

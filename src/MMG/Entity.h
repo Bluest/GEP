@@ -21,7 +21,7 @@ public:
 	std::shared_ptr<Core> getCore();
 
 	template <class T>
-	std::shared_ptr<T> addComponent(T _component);
+	std::shared_ptr<T> addComponent();
 };
 
 #endif

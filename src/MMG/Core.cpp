@@ -2,9 +2,9 @@
 
 std::shared_ptr<Core> Core::init()
 {
-	std::shared_ptr<Core> core = std::make_shared<Core>();
+	//std::shared_ptr<Core> core = std::make_shared<Core>();
 
-	return core;
+	return std::make_shared<Core>();
 }
 
 void Core::run()
@@ -12,17 +12,15 @@ void Core::run()
 	running = true;
 
 	for (auto it = entities.begin(); it != entities.end(); it++)
-		// (*it)->start();
+		{ }// (*it)->start();
 
 	while (running)
 	{
 		for (auto it = entities.begin(); it != entities.end(); it++)
-			// (*it)->update();
+			{ }// (*it)->update();
 
 		for (auto it = entities.begin(); it != entities.end(); it++)
-			// (*it)->draw();
-
-		quit(); // <- put this in testEntity's update()
+			{ }// (*it)->draw();
 	}
 }
 
