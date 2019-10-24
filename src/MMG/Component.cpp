@@ -2,7 +2,10 @@
 
 std::shared_ptr<Entity> Component::getEntity()
 {
-	std::shared_ptr<Entity> entity;
+	return entity.lock();
+}
 
-	return entity;
+std::shared_ptr<Core> Component::getCore()
+{
+	return getEntity()->getCore();
 }

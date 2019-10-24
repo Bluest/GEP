@@ -4,30 +4,34 @@
 class TestComponent : public Component
 {
 private:
-	std::weak_ptr<Core> core;
+	int countdown;
 
 	void onStart()
 	{
-		printf("yo mama\n");
+		printf("TestComponent started\n");
 	}
 
 	void onUpdate()
 	{
-		printf("ok dying now\n");
-		
+		if (--countdown > 0) printf("%i", countdown);
+		else
+		{
+			printf("ok dying now\n");
+			getCore()->quit();
+		}
 	}
 
 public:
-
+	TestComponent(int _countdown)
+	{
+		countdown = _countdown;
+	}
 };
 
 int main()
 {
 	std::shared_ptr<Core> core = Core::init();
 	// Why not just "Core core;" with a constructor?
-
-	// Entity testEntity;
-	// testEntity.addComponent<testComponent>();
 
 	std::shared_ptr<Entity> testEntity = std::make_shared<Entity>();
 	testEntity->addComponent<TestComponent>();

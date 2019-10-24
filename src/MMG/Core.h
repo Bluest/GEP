@@ -4,7 +4,7 @@
 #include <list>
 #include <memory>
 
-class Entity;
+#include "Entity.h"
 
 class Core
 {

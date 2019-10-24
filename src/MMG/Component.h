@@ -2,8 +2,9 @@
 #define _COMPONENT_H_
 
 #include <memory>
+#include "Entity.h"
 
-class Entity;
+class Core;
 
 class Component
 {
@@ -15,6 +16,7 @@ private:
 
 public:
 	std::shared_ptr<Entity> getEntity();
+	std::shared_ptr<Core> getCore();
 };
 
 #endif
