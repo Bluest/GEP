@@ -1,10 +1,10 @@
 #include <MMG.h>
 #include <iostream>
 
-class TestComponent : public Component
+/*class TestComponent : public Component
 {
 private:
-	int countdown;
+	int countdown = 10;
 
 	void onStart()
 	{
@@ -26,15 +26,16 @@ public:
 	{
 		countdown = _countdown;
 	}
-};
+};*/
 
 int main()
 {
 	std::shared_ptr<Core> core = Core::init();
 	// Why not just "Core core;" with a constructor?
+	// Maybe make it a unique_ptr?
 
-	std::shared_ptr<Entity> testEntity = std::make_shared<Entity>();
-	testEntity->addComponent<TestComponent>();
+	std::shared_ptr<Entity> testEntity = core->addEntity();
+	testEntity->addComponent<TriangleRenderer>();
 
 	std::cout << "START" << std::endl;
 	core->run();

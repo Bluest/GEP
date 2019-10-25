@@ -1,9 +1,8 @@
 #include "Core.h"
+#include "Entity.h"
 
 std::shared_ptr<Core> Core::init()
 {
-	//std::shared_ptr<Core> core = std::make_shared<Core>();
-
 	return std::make_shared<Core>();
 }
 
@@ -12,16 +11,18 @@ void Core::run()
 	running = true;
 
 	for (auto it = entities.begin(); it != entities.end(); it++)
-		{ }// (*it)->start();
+		(*it)->start();
 
 	while (running)
 	{
 		for (auto it = entities.begin(); it != entities.end(); it++)
-			{ }// (*it)->update();
+			(*it)->update();
 
 		for (auto it = entities.begin(); it != entities.end(); it++)
-			{ }// (*it)->draw();
+			(*it)->draw();
 	}
+
+	quit();
 }
 
 void Core::quit()
@@ -33,8 +34,6 @@ std::shared_ptr<Entity> Core::addEntity()
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
 	entities.push_back(entity);
-	
-	entities.emplace_back(std::make_shared<Entity>());
 	// init new entity's fields
 
 	return entity;

@@ -2,12 +2,14 @@
 #define _COMPONENT_H_
 
 #include <memory>
-#include "Entity.h"
 
+class Entity;
 class Core;
 
 class Component
 {
+	friend class Entity;
+
 private:
 	std::weak_ptr<Entity> entity;
 

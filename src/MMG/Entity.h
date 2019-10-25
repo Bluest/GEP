@@ -4,11 +4,13 @@
 #include <list>
 #include <memory>
 
-class Component;
 class Core;
+class Component;
 
 class Entity
 {
+	friend class Core;
+
 private:
 	std::list<std::shared_ptr<Component>> components;
 	std::weak_ptr<Core> core;
@@ -18,10 +20,16 @@ private:
 	void draw();
 
 public:
-	std::shared_ptr<Core> getCore();
-
 	template <class T>
-	std::shared_ptr<T> addComponent();
+	std::shared_ptr<T> addComponent()
+	{
+		std::shared_ptr<T> component = std::make_shared<T>();
+		components.push_back(component);
+
+		return component;
+	}
+
+	std::shared_ptr<Core> getCore();
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "Component.h"
+#include "Entity.h"
 
 std::shared_ptr<Entity> Component::getEntity()
 {
