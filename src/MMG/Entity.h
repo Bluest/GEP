@@ -12,8 +12,9 @@ class Entity
 	friend class Core;
 
 private:
-	std::list<std::shared_ptr<Component>> components;
+	std::weak_ptr<Entity> self;
 	std::weak_ptr<Core> core;
+	std::list<std::shared_ptr<Component>> components;
 
 	void start();
 	void update();
@@ -24,6 +25,7 @@ public:
 	std::shared_ptr<T> addComponent()
 	{
 		std::shared_ptr<T> component = std::make_shared<T>();
+		component->entity = self;
 		components.push_back(component);
 
 		return component;

@@ -9,8 +9,9 @@ class Entity;
 class Core
 {
 private:
-	bool running;
+	std::weak_ptr<Core> self;
 	std::list<std::shared_ptr<Entity>> entities;
+	bool running;
 
 public:
 	static std::shared_ptr<Core> init();
