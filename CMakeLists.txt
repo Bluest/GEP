@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 2.6)
+
 project(MMG)
 
 include_directories(
+	contrib
 	src/MMG
 )
 
