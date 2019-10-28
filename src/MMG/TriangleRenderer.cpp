@@ -3,11 +3,13 @@
 
 void TriangleRenderer::onStart()
 {
-	printf("TriangleRenderer started\n");
+	printf("TriangleRenderer: onStart()\n");
 }
 
 void TriangleRenderer::onUpdate()
 {
-	printf("ok dying now\n");
+	printf("TriangleRenderer: onUpdate()\n");
+
+	printf("Quitting...\n");
 	getCore()->quit();
 }

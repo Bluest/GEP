@@ -7,6 +7,10 @@ include_directories(
 	src/MMG
 )
 
+link_directories(
+	${CMAKE_SOURCE_DIR}/contrib
+)
+
 add_library(MMG
 	src/MMG/MMG.h
 	src/MMG/Core.h
