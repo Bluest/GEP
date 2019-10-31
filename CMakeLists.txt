@@ -11,8 +11,6 @@ link_directories(
 	${CMAKE_SOURCE_DIR}/contrib
 )
 
-target_link_libraries(MMG SDL2 opengl32 glew32)
-
 add_library(MMG
 	src/MMG/MMG.h
 	src/MMG/Core.h
@@ -25,8 +23,10 @@ add_library(MMG
 	src/MMG/TriangleRenderer.cpp
 )
 
-target_link_libraries(game MMG)
+target_link_libraries(MMG SDL2 opengl32 glew32)
 
 add_executable(game
 	src/game/main.cpp
 )
+
+target_link_libraries(game MMG)
