@@ -31,6 +31,20 @@ public:
 		return component;
 	}
 
+	template <class T>
+	std::shared_ptr<T> getComponent()
+	{
+		std::shared_ptr<T> component;
+
+		for (auto it = components.begin(); it != components.end(); it++)
+		{
+			component = std::dynamic_pointer_cast<T>(*it);
+			if (component) return component;
+		}
+
+		return nullptr;
+	}
+
 	std::shared_ptr<Core> getCore();
 };
 

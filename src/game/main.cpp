@@ -9,11 +9,12 @@ int main()
 
 	std::shared_ptr<Entity> testEntity = core->addEntity();
 	testEntity->addComponent<TriangleRenderer>();
+	testEntity->getComponent<TriangleRenderer>();
 
 	std::cout << "START" << std::endl;
 	core->run();
 	std::cout << "END" << std::endl;
 
-	// Cleanup
+	// Cleanup? Or is that handled in Core?
 	return 0;
 }
