@@ -3,12 +3,13 @@ cmake_minimum_required(VERSION 2.6)
 project(MMG)
 
 include_directories(
-	contrib
+	contrib/include/SDL2
+	contrib/include/GL
 	src/MMG
 )
 
 link_directories(
-	${CMAKE_SOURCE_DIR}/contrib
+	${CMAKE_SOURCE_DIR}/contrib/lib
 )
 
 add_library(MMG

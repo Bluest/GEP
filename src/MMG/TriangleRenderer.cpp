@@ -1,8 +1,8 @@
 #include "TriangleRenderer.h"
 #include "Core.h"
 
-#include <SDL2/SDL.h>
-#include <GL/glew.h>
+#include <SDL.h>
+#include <glew.h>
 
 #define WINDOW_WIDTH 640
 #define WINDOW_HEIGHT 480
