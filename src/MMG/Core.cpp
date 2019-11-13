@@ -5,6 +5,20 @@ std::shared_ptr<Core> Core::init()
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
+	
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		throw std::exception();
+
+	SDL_Window *window = SDL_CreateWindow("Lab 4 - Architecture",
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+		core->winW = 640, core->winH = 480, SDL_WINDOW_OPENGL);
+
+	if (!SDL_GL_CreateContext(window))
+		throw std::exception();
+
+	if (glewInit() != GLEW_OK)
+		throw std::exception();
+
 	return core;
 }
 

@@ -1,12 +1,6 @@
 #include "TriangleRenderer.h"
 #include "Core.h"
 
-#include <SDL.h>
-#include <glew.h>
-
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
-
 const GLfloat positions[] = {
   0.0f, 0.5f, 0.0f,
   -0.5f, -0.5f, 0.0f,
@@ -42,25 +36,6 @@ const GLchar *fragmentShaderSrc =
 
 void TriangleRenderer::onStart()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		throw std::exception();
-	}
-
-	SDL_Window *window = SDL_CreateWindow("Lab 4 - Architecture",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-		WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
-
-	if (!SDL_GL_CreateContext(window))
-	{
-		throw std::exception();
-	}
-
-	if (glewInit() != GLEW_OK)
-	{
-		throw std::exception();
-	}
-
 	GLuint positionsVboId = 0;
 
 	// Create a new VBO on the GPU and bind it
