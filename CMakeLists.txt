@@ -3,8 +3,7 @@ cmake_minimum_required(VERSION 2.6)
 project(MMG)
 
 include_directories(
-	contrib/include/SDL2
-	contrib/include/GL
+	contrib/include
 	src/MMG
 )
 
@@ -31,3 +30,13 @@ add_executable(game
 )
 
 target_link_libraries(game MMG)
+
+add_custom_command(TARGET game
+	POST_BUILD
+	COMMAND ${CMAKE_COMMAND} -E copy
+		"${PROJECT_SOURCE_DIR}/contrib/lib/SDL2.dll"
+		$<TARGET_FILE_DIR:game>
+	COMMAND ${CMAKE_COMMAND} -E copy
+		"${PROJECT_SOURCE_DIR}/contrib/lib/glew32.dll"
+		$<TARGET_FILE_DIR:game>
+)
