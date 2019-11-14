@@ -9,9 +9,9 @@ std::shared_ptr<Core> Core::init()
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		throw std::exception();
 
-	SDL_Window *window = SDL_CreateWindow("Lab 4 - Architecture",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-		core->winW = 640, core->winH = 480, SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow("MMG",
+		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+		core->winW, core->winH, SDL_WINDOW_OPENGL);
 
 	if (!SDL_GL_CreateContext(window))
 		throw std::exception();
@@ -24,19 +24,36 @@ std::shared_ptr<Core> Core::init()
 
 void Core::run()
 {
-	running = true;
-
 	for (auto it = entities.begin(); it != entities.end(); it++)
 		(*it)->start();
 
+	SDL_Event event = { 0 };
+	running = true;
 	while (running)
 	{
+		while (SDL_PollEvent(&event))
+		{
+			if (event.type == SDL_QUIT)
+			{
+				printf("Quitting...\n");
+				quit();
+			}
+		}
+
 		for (auto it = entities.begin(); it != entities.end(); it++)
 			(*it)->update();
 
+		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT);
+
 		for (auto it = entities.begin(); it != entities.end(); it++)
 			(*it)->draw();
+
+		SDL_GL_SwapWindow(window);
 	}
+
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 void Core::quit()

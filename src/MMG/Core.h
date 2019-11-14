@@ -11,9 +11,9 @@ class Entity;
 class Core
 {
 private:
-	int winW;
-	int winH;
 	SDL_Window* window;
+	const int winW = 640;
+	const int winH = 480;
 
 	std::weak_ptr<Core> self;
 	std::list<std::shared_ptr<Entity>> entities;
