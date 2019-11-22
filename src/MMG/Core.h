@@ -12,9 +12,9 @@ class Core
 {
 private:
 	SDL_Window* window = nullptr;
+	SDL_GLContext glContext = NULL;
 	const int winW = 640;
 	const int winH = 480;
-	SDL_GLContext glContext = NULL;
 
 	std::weak_ptr<Core> self;
 	std::list<std::shared_ptr<Entity>> entities;
@@ -22,9 +22,9 @@ private:
 
 public:
 	static std::shared_ptr<Core> init();
-	std::shared_ptr<Entity> addEntity();
 	void run();
 	void quit();
+	std::shared_ptr<Entity> addEntity();
 };
 
 #endif
