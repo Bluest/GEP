@@ -1,7 +1,7 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-#include <SDL/SDL.h>
+#include <SDL2/SDL.h>
 #include <GL/glew.h>
 #include <list>
 #include <memory>
