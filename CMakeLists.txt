@@ -34,8 +34,8 @@ add_library(MMG
 	src/MMG/Entity.cpp
 	src/MMG/Component.h
 	src/MMG/Component.cpp
-	src/MMG/TriangleRenderer.h
-	src/MMG/TriangleRenderer.cpp
+	src/MMG/MeshRenderer.h
+	src/MMG/MeshRenderer.cpp
 )
 target_link_libraries(MMG rend SDL2 opengl32 glew32)
 
