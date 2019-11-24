@@ -48,15 +48,15 @@ void Core::run()
 
 		SDL_GL_SwapWindow(window);
 	}
-
-	SDL_GL_DeleteContext(glContext);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
 }
 
 void Core::quit()
 {
 	running = false;
+
+	SDL_GL_DeleteContext(glContext);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }
 
 std::shared_ptr<Entity> Core::addEntity()
