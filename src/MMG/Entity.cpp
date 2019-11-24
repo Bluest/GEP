@@ -19,7 +19,10 @@ void Entity::update()
 
 void Entity::draw()
 {
-	
+	for (auto it = components.begin(); it != components.end(); it++)
+	{
+		(*it)->onDraw();
+	}
 }
 
 std::shared_ptr<Core> Entity::getCore()

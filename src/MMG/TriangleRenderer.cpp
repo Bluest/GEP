@@ -10,3 +10,8 @@ void TriangleRenderer::onUpdate()
 {
 	printf("TriangleRenderer: onUpdate()\n");
 }
+
+void TriangleRenderer::onDraw()
+{
+	printf("TriangleRenderer: onDraw()\n");
+}

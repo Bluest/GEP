@@ -33,7 +33,7 @@ void Core::run()
 			if (event.type == SDL_QUIT)
 			{
 				printf("Quitting...\n");
-				quit();
+				running = false;
 			}
 		}
 
@@ -48,12 +48,12 @@ void Core::run()
 
 		SDL_GL_SwapWindow(window);
 	}
+
+	quit();
 }
 
 void Core::quit()
 {
-	running = false;
-
 	SDL_GL_DeleteContext(glContext);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

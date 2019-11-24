@@ -15,6 +15,7 @@ private:
 
 	virtual void onStart() = 0;
 	virtual void onUpdate() = 0;
+	virtual void onDraw() = 0;
 
 public:
 	std::shared_ptr<Entity> getEntity();

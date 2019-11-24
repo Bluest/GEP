@@ -7,8 +7,8 @@ class TriangleRenderer : public Component
 {
 private:
 	void onStart();
-
 	void onUpdate();
+	void onDraw();
 };
 
 #endif
