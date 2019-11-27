@@ -1,8 +1,8 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
+#include <rend.h>
 #include <SDL2/SDL.h>
-#include <GL/glew.h>
 #include <list>
 #include <memory>
 
@@ -13,6 +13,8 @@ class Core
 private:
 	SDL_Window* window = nullptr;
 	SDL_GLContext glContext = NULL;
+
+	// Allow these to be defined in the game project:
 	const int winW = 640;
 	const int winH = 480;
 

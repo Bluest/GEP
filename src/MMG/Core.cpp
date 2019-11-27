@@ -5,16 +5,30 @@ std::shared_ptr<Core> Core::init()
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
-	
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) throw std::exception();
 
+	// SDL
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+		throw rend::Exception("Failed to initialise SDL");
+
+	// Window
 	core->window = SDL_CreateWindow("MMG",
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		core->winW, core->winH, SDL_WINDOW_OPENGL);
 
+	if (!core->window)
+		throw rend::Exception("Failed to create window");
+
+	// OpenGL context
 	core->glContext = SDL_GL_CreateContext(core->window);
-	if (!core->glContext) throw std::exception();
-	if (glewInit() != GLEW_OK) throw std::exception();
+
+	if (!core->glContext)
+		throw rend::Exception("Failed to create OpenGL context");
+
+	// GlEW
+	if (glewInit() != GLEW_OK)
+		throw rend::Exception("Failed to initialise GLEW");
+
+	std::sr1::shared_ptr<rend::Context> rendContext = rend::Context::initialize();
 
 	return core;
 }
@@ -23,6 +37,8 @@ void Core::run()
 {
 	for (auto it = entities.begin(); it != entities.end(); it++)
 		(*it)->start();
+
+	// Handle delta time
 
 	SDL_Event event = { 0 };
 	running = true;

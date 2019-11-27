@@ -9,6 +9,9 @@ private:
 	void onStart();
 	void onUpdate();
 	void onDraw();
+
+public:
+	void init(const char* _file);
 };
 
 #endif

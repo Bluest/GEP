@@ -27,6 +27,18 @@ public:
 		std::shared_ptr<T> component = std::make_shared<T>();
 		component->entity = self;
 		components.push_back(component);
+		component->init();
+
+		return component;
+	}
+
+	template <class T, class A>
+	std::shared_ptr<T> addComponent(A _a)
+	{
+		std::shared_ptr<T> component = std::make_shared<T>();
+		component->entity = self;
+		components.push_back(component);
+		component->init(_a);
 
 		return component;
 	}
