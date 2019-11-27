@@ -21,7 +21,7 @@ private:
 	void draw();
 
 public:
-	template <class T>
+	template <typename T>
 	std::shared_ptr<T> addComponent()
 	{
 		std::shared_ptr<T> component = std::make_shared<T>();
@@ -32,13 +32,24 @@ public:
 		return component;
 	}
 
-	template <class T, class A>
+	template <typename T, typename A>
 	std::shared_ptr<T> addComponent(A _a)
 	{
 		std::shared_ptr<T> component = std::make_shared<T>();
 		component->entity = self;
 		components.push_back(component);
 		component->init(_a);
+
+		return component;
+	}
+
+	template <typename T, typename A, typename B>
+	std::shared_ptr<T> addComponent(A _a, B _b)
+	{
+		std::shared_ptr<T> component = std::make_shared<T>();
+		component->entity = self;
+		components.push_back(component);
+		component->init(_a, _b);
 
 		return component;
 	}
