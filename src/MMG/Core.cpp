@@ -33,10 +33,10 @@ std::shared_ptr<Core> Core::init()
 
 void Core::run()
 {
+	time.start(60.0f);
+
 	for (auto it = entities.begin(); it != entities.end(); it++)
 		(*it)->start();
-
-	// Handle delta time
 
 	SDL_Event event = { 0 };
 	running = true;
@@ -61,6 +61,7 @@ void Core::run()
 			(*it)->draw();
 
 		SDL_GL_SwapWindow(window);
+		time.tick();
 	}
 
 	quit();
@@ -68,6 +69,8 @@ void Core::run()
 
 void Core::quit()
 {
+	// rend::Context.reset() here to fix the abort() message
+
 	SDL_GL_DeleteContext(glContext);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
