@@ -1,7 +1,7 @@
 #include "Core.h"
 #include "Entity.h"
 
-std::shared_ptr<Core> Core::init()
+std::shared_ptr<Core> Core::init(const int _winW, const int _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
@@ -13,7 +13,7 @@ std::shared_ptr<Core> Core::init()
 	// Window
 	core->window = SDL_CreateWindow("MMG",
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		core->winW, core->winH, SDL_WINDOW_OPENGL);
+		_winW, _winH, SDL_WINDOW_OPENGL);
 
 	if (!core->window)
 		throw rend::Exception("Failed to create window");

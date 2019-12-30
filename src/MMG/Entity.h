@@ -11,15 +11,6 @@ class Entity
 {
 	friend class Core;
 
-private:
-	std::weak_ptr<Entity> self;
-	std::weak_ptr<Core> core;
-	std::list<std::shared_ptr<Component>> components;
-
-	void start();
-	void update();
-	void draw();
-
 public:
 	template <typename T>
 	std::shared_ptr<T> addComponent()
@@ -69,6 +60,15 @@ public:
 	}
 
 	std::shared_ptr<Core> getCore();
+
+private:
+	std::weak_ptr<Entity> self;
+	std::weak_ptr<Core> core;
+	std::list<std::shared_ptr<Component>> components;
+
+	void start();
+	void update();
+	void draw();
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 int main()
 {
-	std::shared_ptr<Core> core = Core::init();
+	std::shared_ptr<Core> core = Core::init(500, 500);
 
 	std::shared_ptr<Entity> testEntity = core->addEntity();
 	std::shared_ptr<MeshRenderer> meshRenderer = testEntity->addComponent<MeshRenderer>(
