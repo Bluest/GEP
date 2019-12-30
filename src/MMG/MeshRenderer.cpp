@@ -101,8 +101,10 @@ void MeshRenderer::onDraw()
 	shader->setUniform("u_Projection", glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f));
 	shader->setUniform("u_Model",
 		glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, -20)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(0.0f), glm::vec3(0, 1, 0))
+		glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0, 1, 0))
 	);
+
+	angle += 1.0f;
 
 	shader->setMesh(mesh);
 	shader->render();

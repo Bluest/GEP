@@ -16,6 +16,8 @@ private:
 	void onUpdate() {}
 	void onDraw();
 
+	float angle = 0.0f;
+
 public:
 	void init(const char* _objPath, const char* _texPath);
 };
