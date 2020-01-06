@@ -7,8 +7,8 @@ int main()
 
 	std::shared_ptr<Entity> testEntity = core->addEntity();
 	std::shared_ptr<MeshRenderer> meshRenderer = testEntity->addComponent<MeshRenderer>(
-		"../assets/curuthers/curuthers.obj",
-		"../assets/curuthers/Whiskers_diffuse.png");
+		"../assets/ivysaur.obj",
+		"../assets/wood.bmp");
 
 	std::cout << "START" << std::endl;
 	core->run();

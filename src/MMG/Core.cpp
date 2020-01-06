@@ -33,6 +33,7 @@ std::shared_ptr<Core> Core::init(const int _winW, const int _winH)
 
 void Core::run()
 {
+	// v Make this definable in game instead
 	time.start(60.0f);
 
 	for (auto it = entities.begin(); it != entities.end(); it++)

@@ -45,7 +45,6 @@ class Core
 public:
 	static std::shared_ptr<Core> init(const int _winW, const int _winH);
 	void run();
-	void quit();
 	std::shared_ptr<Entity> addEntity();
 
 private:
