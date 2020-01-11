@@ -2,6 +2,7 @@
 #define _MESHRENDERER_H_
 
 #include "rend.h"
+
 #include "Component.h"
 
 class MeshRenderer : public Component
@@ -22,4 +23,4 @@ public:
 	void init(const char* _objPath, const char* _texPath);
 };
 
-#endif
+#endif // _MESHRENDERER_H_

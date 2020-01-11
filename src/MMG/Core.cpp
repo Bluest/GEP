@@ -33,7 +33,6 @@ std::shared_ptr<Core> Core::init(const int _winW, const int _winH)
 
 void Core::run()
 {
-	// v Make this definable in game instead
 	time.start(60.0f);
 
 	for (auto it = entities.begin(); it != entities.end(); it++)
@@ -68,15 +67,6 @@ void Core::run()
 	quit();
 }
 
-void Core::quit()
-{
-	// rend::Context.reset() here to fix the abort() message
-
-	SDL_GL_DeleteContext(glContext);
-	SDL_DestroyWindow(window);
-	SDL_Quit();
-}
-
 std::shared_ptr<Entity> Core::addEntity()
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
@@ -85,4 +75,18 @@ std::shared_ptr<Entity> Core::addEntity()
 	entities.push_back(entity);
 
 	return entity;
+}
+
+float Core::getDeltaTime()
+{
+	return time.getDelta();
+}
+
+void Core::quit()
+{
+	// rend::Context.reset() here to fix the abort() message
+
+	SDL_GL_DeleteContext(glContext);
+	SDL_DestroyWindow(window);
+	SDL_Quit();
 }

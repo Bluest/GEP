@@ -71,4 +71,4 @@ private:
 	void draw();
 };
 
-#endif
+#endif // _ENTITY_H_

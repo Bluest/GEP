@@ -6,4 +6,4 @@
 #include "Component.h"
 #include "MeshRenderer.h"
 
-#endif
+#endif // _MMG_H_

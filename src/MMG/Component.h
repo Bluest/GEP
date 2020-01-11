@@ -22,4 +22,4 @@ private:
 	virtual void onDraw() = 0;
 };
 
-#endif
+#endif _COMPONENT_H_

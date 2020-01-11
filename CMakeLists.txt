@@ -28,6 +28,8 @@ target_link_libraries(rend opengl32 glew32)
 
 add_library(MMG
 	src/MMG/MMG.h
+	src/MMG/Environment.h
+	src/MMG/Environment.cpp
 	src/MMG/Core.h
 	src/MMG/Core.cpp
 	src/MMG/Entity.h

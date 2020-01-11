@@ -104,7 +104,7 @@ void MeshRenderer::onDraw()
 		glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0, 1, 0))
 	);
 
-	angle += 1.0f;
+	angle += 90 * getCore()->getDeltaTime();
 
 	shader->setMesh(mesh);
 	shader->render();
