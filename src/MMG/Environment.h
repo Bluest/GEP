@@ -1,5 +1,5 @@
-#ifndef _TIME_H_
-#define _TIME_H_
+#ifndef _ENVIRONMENT_H_
+#define _ENVIRONMENT_H_
 
 #include <SDL2/SDL.h>
 
@@ -17,4 +17,4 @@ private:
 	float target;
 };
 
-#endif // _TIME_H_
+#endif // _ENVIRONMENT_H_

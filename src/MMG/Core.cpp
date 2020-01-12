@@ -1,7 +1,8 @@
 #include "Core.h"
 #include "Entity.h"
+#include "Resource.h"
 
-std::shared_ptr<Core> Core::init(const int _winW, const int _winH)
+std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
@@ -67,6 +68,29 @@ void Core::run()
 	quit();
 }
 
+float Core::getDeltaTime()
+{
+	return time.getDelta();
+}
+
+void Core::loadResource(const std::string& _path)
+{
+	resources.emplace_back(std::make_shared<Resource>(_path));
+}
+
+std::shared_ptr<Resource> Core::useResource(const std::string& _name)
+{
+	for (auto it = resources.begin(); it != resources.end(); it++)
+	{
+		if ((*it)->getName() == _name)
+		{
+			return (*it);
+		}
+	}
+
+	throw rend::Exception("Resource not found");
+}
+
 std::shared_ptr<Entity> Core::addEntity()
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
@@ -75,11 +99,6 @@ std::shared_ptr<Entity> Core::addEntity()
 	entities.push_back(entity);
 
 	return entity;
-}
-
-float Core::getDeltaTime()
-{
-	return time.getDelta();
 }
 
 void Core::quit()

@@ -12,25 +12,29 @@
 #include "Environment.h"
 
 class Entity;
+class Resource;
 
 class Core
 {
 public:
-	static std::shared_ptr<Core> init(const int _winW, const int _winH);
+	static std::shared_ptr<Core> init(const int& _winW, const int& _winH);
 	void run();
-	std::shared_ptr<Entity> addEntity();
+
 	float getDeltaTime();
+	void loadResource(const std::string& _path);
+	std::shared_ptr<Resource> useResource(const std::string& _name);
+	std::shared_ptr<Entity> addEntity();
 
 private:
 	SDL_Window* window = nullptr;
 	SDL_GLContext glContext = NULL;
 	std::sr1::shared_ptr<rend::Context> rendContext;
 	// std::weak_ptr<Camera> currentCamera
-	// std::list<std::shared_ptr<Resource>> resources
 
 	Time time;
 
 	std::weak_ptr<Core> self;
+	std::list<std::shared_ptr<Resource>> resources;
 	std::list<std::shared_ptr<Entity>> entities;
 	bool running = false;
 
