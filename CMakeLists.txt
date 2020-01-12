@@ -30,6 +30,12 @@ add_library(MMG
 	src/MMG/MMG.h
 	src/MMG/Environment.h
 	src/MMG/Environment.cpp
+	src/MMG/Resource.h
+	src/MMG/Resource.cpp
+	src/MMG/Material.h
+	src/MMG/Material.cpp
+	src/MMG/Model.h
+	src/MMG/Model.cpp
 	src/MMG/Core.h
 	src/MMG/Core.cpp
 	src/MMG/Entity.h

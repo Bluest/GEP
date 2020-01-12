@@ -1,7 +1,7 @@
 #ifndef _CORE_H_
 #define _CORE_H_
 
-// rend must be included before memory
+// rend's <sr1/memory> must be included before <memory>
 #include <rend.h>
 
 #include <list>
@@ -24,9 +24,9 @@ public:
 private:
 	SDL_Window* window = nullptr;
 	SDL_GLContext glContext = NULL;
-	// rend::Context rendContext
+	std::sr1::shared_ptr<rend::Context> rendContext;
 	// std::weak_ptr<Camera> currentCamera
-	// std::shared_ptr< (list?) Resource> resources
+	// std::list<std::shared_ptr<Resource>> resources
 
 	Time time;
 

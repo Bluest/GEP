@@ -4,14 +4,27 @@
 #include <list>
 #include <memory>
 
+#include <glm/glm.hpp>
+
 class Core;
 class Component;
+
+// Transform is a part of entity, instead of a component
+struct Transform
+{
+	// Initialise with default values
+	glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+	glm::vec3 scale = glm::vec3(1.0f, 1.0f, 1.0f);
+};
 
 class Entity
 {
 	friend class Core;
 
 public:
+	Transform transform;
+
 	template <typename T>
 	std::shared_ptr<T> addComponent()
 	{
@@ -60,6 +73,8 @@ public:
 	}
 
 	std::shared_ptr<Core> getCore();
+	Transform getTransform();
+	void setTransform();
 
 private:
 	std::weak_ptr<Entity> self;
