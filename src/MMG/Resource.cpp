@@ -4,7 +4,7 @@
 
 Resource::Resource(const std::string& _path)
 {
-	std::cout << "Loading " << _path << std::endl;
+	std::cout << "Loading \"" << _path << "\" ";
 	name = _path;
 }
 

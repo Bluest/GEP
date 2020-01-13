@@ -9,7 +9,7 @@
 class Core;
 class Component;
 
-// Transform is a part of entity, instead of a component
+// Transform is a part of entity, instead of a separate component
 struct Transform
 {
 	// Initialise with default values
@@ -73,8 +73,6 @@ public:
 	}
 
 	std::shared_ptr<Core> getCore();
-	Transform getTransform();
-	void setTransform();
 
 private:
 	std::weak_ptr<Entity> self;

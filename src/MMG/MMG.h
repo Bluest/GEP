@@ -1,7 +1,10 @@
 #ifndef _MMG_H_
 #define _MMG_H_
 
+#include <rend.h>
+
 #include "Environment.h"
+#include "ResourceManager.h"
 #include "Resource.h"
 #include "Material.h"
 #include "Model.h"

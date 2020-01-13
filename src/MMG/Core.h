@@ -12,7 +12,6 @@
 #include "Environment.h"
 
 class Entity;
-class Resource;
 
 class Core
 {
@@ -21,8 +20,6 @@ public:
 	void run();
 
 	float getDeltaTime();
-	void loadResource(const std::string& _path);
-	std::shared_ptr<Resource> useResource(const std::string& _name);
 	std::shared_ptr<Entity> addEntity();
 
 private:
@@ -34,7 +31,6 @@ private:
 	Time time;
 
 	std::weak_ptr<Core> self;
-	std::list<std::shared_ptr<Resource>> resources;
 	std::list<std::shared_ptr<Entity>> entities;
 	bool running = false;
 

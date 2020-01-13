@@ -1,6 +1,5 @@
 #include "Core.h"
 #include "Entity.h"
-#include "Resource.h"
 
 std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
 {
@@ -71,24 +70,6 @@ void Core::run()
 float Core::getDeltaTime()
 {
 	return time.getDelta();
-}
-
-void Core::loadResource(const std::string& _path)
-{
-	resources.emplace_back(std::make_shared<Resource>(_path));
-}
-
-std::shared_ptr<Resource> Core::useResource(const std::string& _name)
-{
-	for (auto it = resources.begin(); it != resources.end(); it++)
-	{
-		if ((*it)->getName() == _name)
-		{
-			return (*it);
-		}
-	}
-
-	throw rend::Exception("Resource not found");
 }
 
 std::shared_ptr<Entity> Core::addEntity()

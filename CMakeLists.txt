@@ -30,6 +30,8 @@ add_library(MMG
 	src/MMG/MMG.h
 	src/MMG/Environment.h
 	src/MMG/Environment.cpp
+	src/MMG/ResourceManager.h
+	src/MMG/ResourceManager.cpp
 	src/MMG/Resource.h
 	src/MMG/Resource.cpp
 	src/MMG/Material.h
