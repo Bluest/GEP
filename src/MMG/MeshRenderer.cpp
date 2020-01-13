@@ -1,5 +1,6 @@
 #include "MeshRenderer.h"
 #include "Core.h"
+#include "Entity.h"
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
@@ -96,15 +97,31 @@ void MeshRenderer::init(const char* _objPath, const char* _texPath)
 	mesh->setTexture("u_Texture", texture);
 }
 
+glm::mat4 MeshRenderer::updateModel()
+{
+	// Identity matrix
+	glm::mat4 model(1.0f);
+
+	std::shared_ptr<Transform> transform = std::make_shared<Transform>(getEntity()->transform);
+
+	// Update model position
+	model = glm::translate(model, transform->position);
+
+	// Update model rotation
+	model = glm::rotate(model, glm::radians(transform->rotation.x), glm::vec3(1, 0, 0));
+	model = glm::rotate(model, glm::radians(transform->rotation.y), glm::vec3(0, 1, 0));
+	model = glm::rotate(model, glm::radians(transform->rotation.z), glm::vec3(0, 0, 1));
+
+	// Update model scale
+	model = glm::scale(model, transform->scale);
+
+	return model;
+}
+
 void MeshRenderer::onDraw()
 {
 	shader->setUniform("u_Projection", glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f));
-	shader->setUniform("u_Model",
-		glm::translate(glm::mat4(1.0f), glm::vec3(0, -0.5f, -3)) *
-		glm::rotate(glm::mat4(1.0f), glm::radians(angle), glm::vec3(0, 1, 0))
-	);
-
-	angle += 90 * getCore()->getDeltaTime();
+	shader->setUniform("u_Model", updateModel());
 
 	shader->setMesh(mesh);
 	shader->render();

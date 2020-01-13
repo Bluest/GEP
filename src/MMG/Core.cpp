@@ -1,10 +1,12 @@
 #include "Core.h"
+#include "Environment.h"
 #include "Entity.h"
 
 std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
+	core->time = std::make_shared<Time>();
 
 	// SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -28,12 +30,14 @@ std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
 	if (glewInit() != GLEW_OK)
 		throw rend::Exception("Failed to initialise GLEW");
 
+	// Load rend stuff
+
 	return core;
 }
 
 void Core::run()
 {
-	time.start(60.0f);
+	time->start(60.0f);
 
 	for (auto it = entities.begin(); it != entities.end(); it++)
 		(*it)->start();
@@ -46,7 +50,6 @@ void Core::run()
 		{
 			if (event.type == SDL_QUIT)
 			{
-				printf("Quitting...\n");
 				running = false;
 			}
 		}
@@ -61,7 +64,7 @@ void Core::run()
 			(*it)->draw();
 
 		SDL_GL_SwapWindow(window);
-		time.tick();
+		time->tick();
 	}
 
 	quit();
@@ -69,7 +72,7 @@ void Core::run()
 
 float Core::getDeltaTime()
 {
-	return time.getDelta();
+	return time->getDelta();
 }
 
 std::shared_ptr<Entity> Core::addEntity()

@@ -17,9 +17,9 @@ public:
 private:
 	std::weak_ptr<Entity> entity;
 
-	virtual void onStart() = 0;
-	virtual void onUpdate() = 0;
-	virtual void onDraw() = 0;
+	virtual void onStart() {}
+	virtual void onUpdate() {}
+	virtual void onDraw() {}
 };
 
 #endif _COMPONENT_H_

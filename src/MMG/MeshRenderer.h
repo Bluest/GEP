@@ -13,11 +13,9 @@ private:
 	std::sr1::shared_ptr<rend::Mesh> mesh;
 	std::sr1::shared_ptr<rend::Texture> texture;
 
-	void onStart() {}
-	void onUpdate() {}
-	void onDraw();
+	glm::mat4 updateModel();
 
-	float angle = 0.0f;
+	void onDraw();
 
 public:
 	void init(const char* _objPath, const char* _texPath);

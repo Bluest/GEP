@@ -9,8 +9,7 @@
 
 #include <SDL2/SDL.h>
 
-#include "Environment.h"
-
+class Time;
 class Entity;
 
 class Core
@@ -28,9 +27,8 @@ private:
 	std::sr1::shared_ptr<rend::Context> rendContext;
 	// std::weak_ptr<Camera> currentCamera
 
-	Time time;
-
 	std::weak_ptr<Core> self;
+	std::shared_ptr<Time> time;
 	std::list<std::shared_ptr<Entity>> entities;
 	bool running = false;
 

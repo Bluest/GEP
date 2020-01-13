@@ -50,6 +50,8 @@ add_library(MMG
 target_link_libraries(MMG rend SDL2 opengl32 glew32 OpenAL32)
 
 add_executable(game
+	src/game/Player.h
+	src/game/Player.cpp
 	src/game/main.cpp
 )
 target_link_libraries(game MMG)
