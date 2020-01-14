@@ -1,3 +1,4 @@
+// <MMG.h> should be included first
 #include <MMG.h>
 
 #include <iostream>

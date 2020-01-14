@@ -99,9 +99,10 @@ void MeshRenderer::init(const char* _objPath, const char* _texPath)
 
 glm::mat4 MeshRenderer::updateModel()
 {
-	// Identity matrix
+	// Initialised as identity matrix
 	glm::mat4 model(1.0f);
 
+	// Pointer to entity's Transform
 	std::shared_ptr<Transform> transform = std::make_shared<Transform>(getEntity()->transform);
 
 	// Update model position
@@ -120,9 +121,11 @@ glm::mat4 MeshRenderer::updateModel()
 
 void MeshRenderer::onDraw()
 {
+	// shader->setUniform("u_Projection", getCore()->currentCamera()->getPerspective());
 	shader->setUniform("u_Projection", glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f));
 	shader->setUniform("u_Model", updateModel());
 
 	shader->setMesh(mesh);
+
 	shader->render();
 }

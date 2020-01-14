@@ -28,6 +28,8 @@ target_link_libraries(rend opengl32 glew32)
 
 add_library(MMG
 	src/MMG/MMG.h
+	src/MMG/Input.h
+	src/MMG/Input.cpp
 	src/MMG/Environment.h
 	src/MMG/Environment.cpp
 	src/MMG/ResourceManager.h
@@ -47,7 +49,7 @@ add_library(MMG
 	src/MMG/MeshRenderer.h
 	src/MMG/MeshRenderer.cpp
 )
-target_link_libraries(MMG rend SDL2 opengl32 glew32 OpenAL32)
+target_link_libraries(MMG rend SDL2 OpenAL32)
 
 add_executable(game
 	src/game/Player.h

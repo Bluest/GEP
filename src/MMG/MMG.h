@@ -3,6 +3,7 @@
 
 #include <rend.h>
 
+#include "Input.h"
 #include "Environment.h"
 #include "ResourceManager.h"
 #include "Resource.h"
