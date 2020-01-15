@@ -6,11 +6,15 @@
 class Material : public Resource
 {
 public:
-	Material(const std::string& _path);
+	Material(const std::shared_ptr<Core>& _core, const std::string& _name);
+
+	void onLoad(const std::string& _path);
+	std::sr1::shared_ptr<rend::Shader> getShader();
+	std::sr1::shared_ptr<rend::Texture> getTexture();
 
 private:
-	std::sr1::shared_ptr<rend::Texture> texture;
 	std::sr1::shared_ptr<rend::Shader> shader;
+	std::sr1::shared_ptr<rend::Texture> texture;
 };
 
 #endif // _MATERIAL_H_

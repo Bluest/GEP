@@ -2,10 +2,11 @@
 
 #include "Resource.h"
 
-Resource::Resource(const std::string& _path)
+Resource::Resource(const std::shared_ptr<Core>& _core, const std::string& _name)
 {
-	std::cout << "Loading \"" << _path << "\" ";
-	name = _path;
+	core = _core;
+	name = _name;
+	std::cout << "Loading " << _name;
 }
 
 std::string Resource::getName()

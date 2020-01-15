@@ -18,8 +18,9 @@ public:
 	static std::shared_ptr<Core> init(const int& _winW, const int& _winH);
 	void run();
 
-	float getDeltaTime();
 	std::shared_ptr<Entity> addEntity();
+	std::sr1::shared_ptr<rend::Context> getRendContext();
+	float getDeltaTime();
 
 private:
 	SDL_Window* window = nullptr;

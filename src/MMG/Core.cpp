@@ -26,11 +26,8 @@ std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
 	if (!core->glContext)
 		throw rend::Exception("Failed to create OpenGL context");
 
-	// GlEW
-	if (glewInit() != GLEW_OK)
-		throw rend::Exception("Failed to initialise GLEW");
-
-	// Load rend stuff
+	// Rend context
+	core->rendContext = rend::Context::initialize();
 
 	return core;
 }
@@ -70,11 +67,6 @@ void Core::run()
 	quit();
 }
 
-float Core::getDeltaTime()
-{
-	return time->getDelta();
-}
-
 std::shared_ptr<Entity> Core::addEntity()
 {
 	std::shared_ptr<Entity> entity = std::make_shared<Entity>();
@@ -83,6 +75,16 @@ std::shared_ptr<Entity> Core::addEntity()
 	entities.push_back(entity);
 
 	return entity;
+}
+
+std::sr1::shared_ptr<rend::Context> Core::getRendContext()
+{
+	return rendContext;
+}
+
+float Core::getDeltaTime()
+{
+	return time->getDelta();
 }
 
 void Core::quit()

@@ -6,7 +6,10 @@
 class Model : public Resource
 {
 public:
-	Model(const std::string& _path);
+	Model(const std::shared_ptr<Core>& _core, const std::string& _name);
+
+	void onLoad(const std::string& _path);
+	std::sr1::shared_ptr<rend::Mesh> getMesh();
 
 private:
 	std::sr1::shared_ptr<rend::Mesh> mesh;

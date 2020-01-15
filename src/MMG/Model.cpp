@@ -1,11 +1,40 @@
 #include <rend.h>
 
 #include <iostream>
+#include <fstream>
 
 #include "Model.h"
+#include "Core.h"
 
-Model::Model(const std::string& _path) : Resource(_path)
+Model::Model(const std::shared_ptr<Core>& _core, const std::string& _name) : Resource(_core, _name)
 {
-	std::cout << "<Model>" << std::endl;
-	// Load rend stuff
+	std::cout << " <Model> from \"";
+}
+
+void Model::onLoad(const std::string& _path)
+{
+	std::cout << _path << "\"" << std::endl;
+
+	mesh = core->getRendContext()->createMesh();
+
+	std::ifstream objFile(_path);
+
+	if (!objFile.is_open())
+		throw rend::Exception("Failed to open .obj file");
+
+	std::string obj;
+	std::string line;
+
+	while (!objFile.eof())
+	{
+		std::getline(objFile, line);
+		obj += line + "\n";
+	}
+
+	mesh->parse(obj);
+}
+
+std::sr1::shared_ptr<rend::Mesh> Model::getMesh()
+{
+	return mesh;
 }

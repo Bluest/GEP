@@ -5,10 +5,19 @@
 
 #include "Component.h"
 
+class Model;
+class Material;
+
 class MeshRenderer : public Component
 {
+public:
+	void init(const std::shared_ptr<Model>& _model, const std::shared_ptr<Material>& _material);
+
 private:
-	std::sr1::shared_ptr<rend::Context> context;
+	std::shared_ptr<Model> model;
+	std::shared_ptr<Material> material;
+
+	// Shortcut pointers
 	std::sr1::shared_ptr<rend::Shader> shader;
 	std::sr1::shared_ptr<rend::Mesh> mesh;
 	std::sr1::shared_ptr<rend::Texture> texture;
@@ -16,9 +25,6 @@ private:
 	glm::mat4 updateModel();
 
 	void onDraw();
-
-public:
-	void init(const char* _objPath, const char* _texPath);
 };
 
 #endif // _MESHRENDERER_H_
