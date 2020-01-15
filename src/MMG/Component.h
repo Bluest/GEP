@@ -10,7 +10,7 @@ class Component
 {
 	friend class Entity;
 
-public:
+protected:
 	std::shared_ptr<Entity> getEntity();
 	std::shared_ptr<Core> getCore();
 

@@ -1,12 +1,14 @@
 #include "Core.h"
 #include "Environment.h"
+#include "Input.h"
 #include "Entity.h"
 
 std::shared_ptr<Core> Core::init(const char* _title, const int& _winW, const int& _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
-	core->time = std::make_shared<Time>();
+	core->time = std::make_unique<Time>();
+	core->input = std::make_shared<Input>();
 
 	// SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
@@ -26,7 +28,7 @@ std::shared_ptr<Core> Core::init(const char* _title, const int& _winW, const int
 	if (!core->glContext)
 		throw rend::Exception("Failed to create OpenGL context");
 
-	// Rend context
+	// rend context
 	core->rendContext = rend::Context::initialize();
 
 	return core;
@@ -40,15 +42,14 @@ void Core::run()
 		(*it)->start();
 
 	SDL_Event event = { 0 };
+
 	running = true;
 	while (running)
 	{
-		while (SDL_PollEvent(&event))
+		if (!input->processInput(&event))
 		{
-			if (event.type == SDL_QUIT)
-			{
-				running = false;
-			}
+			// Quit if processInput returned false
+			running = false;
 		}
 
 		for (auto it = entities.begin(); it != entities.end(); it++)
@@ -85,6 +86,11 @@ std::sr1::shared_ptr<rend::Context> Core::getRendContext()
 float Core::getDeltaTime()
 {
 	return time->getDelta();
+}
+
+std::shared_ptr<Input> Core::getInput()
+{
+	return input;
 }
 
 void Core::quit()
