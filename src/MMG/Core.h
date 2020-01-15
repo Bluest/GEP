@@ -15,7 +15,7 @@ class Entity;
 class Core
 {
 public:
-	static std::shared_ptr<Core> init(const int& _winW, const int& _winH);
+	static std::shared_ptr<Core> init(const char* _title, const int& _winW, const int& _winH);
 	void run();
 
 	std::shared_ptr<Entity> addEntity();

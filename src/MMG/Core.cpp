@@ -2,7 +2,7 @@
 #include "Environment.h"
 #include "Entity.h"
 
-std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
+std::shared_ptr<Core> Core::init(const char* _title, const int& _winW, const int& _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
 	core->self = core;
@@ -13,7 +13,7 @@ std::shared_ptr<Core> Core::init(const int& _winW, const int& _winH)
 		throw rend::Exception("Failed to initialise SDL");
 
 	// Window
-	core->window = SDL_CreateWindow("MMG",
+	core->window = SDL_CreateWindow(_title,
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		_winW, _winH, SDL_WINDOW_OPENGL);
 
@@ -89,8 +89,6 @@ float Core::getDeltaTime()
 
 void Core::quit()
 {
-	// rend::Context.reset() here to fix the abort() message
-
 	SDL_GL_DeleteContext(glContext);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

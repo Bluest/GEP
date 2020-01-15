@@ -15,25 +15,25 @@ void load(ResourceManager& _resources)
 
 int main()
 {
-	std::shared_ptr<Core> core = Core::init(500, 500);
+	std::shared_ptr<Core> core = Core::init("MMG Demo", 500, 500);
 	ResourceManager resources(core);
 
 	load(resources);
 
 	std::shared_ptr<Entity> testEntity = core->addEntity();
-	std::shared_ptr<Player> testPlayer = testEntity->addComponent<Player>();
-
-	std::shared_ptr<MeshRenderer> meshRenderer = testEntity->addComponent<MeshRenderer>(
+	testEntity->addComponent<Player>();
+	testEntity->addComponent<MeshRenderer>(
 		resources.use<Model>("IvysaurModel"),
 		resources.use<Material>("IvysaurMaterial"));
 
 	std::shared_ptr<Entity> testEntity2 = core->addEntity();
-	std::shared_ptr<Player> testPlayer2 = testEntity->addComponent<Player>();
-
-	std::shared_ptr<MeshRenderer> meshRenderer2 = testEntity->addComponent<MeshRenderer>(
+	testEntity2->addComponent<Player>();
+	testEntity2->addComponent<MeshRenderer>(
 		resources.use<Model>("CuruthersObj"),
 		resources.use<Material>("CuruthersMat"));
 
+	testEntity2->transform.position.y += 1.0f;
+	testEntity2->transform.position.z -= 15.0f;
 	core->run();
 	
 	return 0;
