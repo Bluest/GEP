@@ -15,7 +15,7 @@ void load(ResourceManager& _resources)
 
 int main()
 {
-	std::shared_ptr<Core> core = Core::init("MMG Demo", 500, 500);
+	std::shared_ptr<Core> core = Core::init("MMG Demo", 640, 480);
 	ResourceManager resources(core);
 
 	load(resources);

@@ -1,5 +1,5 @@
-#ifndef _MESHRENDERER_H_
-#define _MESHRENDERER_H_
+#ifndef _MESH_RENDERER_H_
+#define _MESH_RENDERER_H_
 
 #include "rend.h"
 
@@ -27,4 +27,4 @@ private:
 	void onDraw();
 };
 
-#endif // _MESHRENDERER_H_
+#endif // _MESH_RENDERER_H_

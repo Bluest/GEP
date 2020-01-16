@@ -1,6 +1,7 @@
 #include "MeshRenderer.h"
 #include "Model.h"
 #include "Material.h"
+#include "Camera.h"
 #include "Core.h"
 #include "Entity.h"
 
@@ -24,7 +25,7 @@ glm::mat4 MeshRenderer::updateModel()
 	std::shared_ptr<Transform> transform = std::make_shared<Transform>(getEntity()->transform);
 
 	// Update model position
-	model = glm::translate(model, transform->position);
+	model = glm::translate(model, getCore()->getCamera()->getPosition() + transform->position);
 
 	// Update model rotation
 	model = glm::rotate(model, glm::radians(transform->rotation.x), glm::vec3(1, 0, 0));
@@ -39,9 +40,8 @@ glm::mat4 MeshRenderer::updateModel()
 
 void MeshRenderer::onDraw()
 {
-	// shader->setUniform("u_Projection", getCore()->currentCamera()->getPerspective());
 	mesh->setTexture("u_Texture", texture); 
-	shader->setUniform("u_Projection", glm::perspective(glm::radians(45.0f), 1.0f, 0.1f, 100.0f));
+	shader->setUniform("u_Projection", getCore()->getCamera()->getProjection());
 	shader->setUniform("u_Model", updateModel());
 
 	shader->setMesh(mesh);

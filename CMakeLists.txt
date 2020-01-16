@@ -30,16 +30,20 @@ add_library(MMG
 	src/MMG/MMG.h
 	src/MMG/Input.h
 	src/MMG/Input.cpp
+	src/MMG/Camera.h
+	src/MMG/Camera.cpp
 	src/MMG/Environment.h
 	src/MMG/Environment.cpp
 	src/MMG/ResourceManager.h
 	src/MMG/ResourceManager.cpp
 	src/MMG/Resource.h
 	src/MMG/Resource.cpp
-	src/MMG/Material.h
-	src/MMG/Material.cpp
 	src/MMG/Model.h
 	src/MMG/Model.cpp
+	src/MMG/Material.h
+	src/MMG/Material.cpp
+	src/MMG/Sound.h
+	src/MMG/Sound.cpp
 	src/MMG/Core.h
 	src/MMG/Core.cpp
 	src/MMG/Entity.h
@@ -48,6 +52,8 @@ add_library(MMG
 	src/MMG/Component.cpp
 	src/MMG/MeshRenderer.h
 	src/MMG/MeshRenderer.cpp
+	src/MMG/SoundSource.h
+	src/MMG/SoundSource.cpp
 )
 target_link_libraries(MMG rend SDL2 OpenAL32)
 

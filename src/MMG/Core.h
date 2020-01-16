@@ -9,6 +9,7 @@
 
 #include <SDL2/SDL.h>
 
+class Camera;
 class Time;
 class Input;
 class Entity;
@@ -21,6 +22,7 @@ public:
 
 	std::shared_ptr<Entity> addEntity();
 	std::sr1::shared_ptr<rend::Context> getRendContext();
+	std::shared_ptr<Camera> getCamera();
 	float getDeltaTime();
 	std::shared_ptr<Input> getInput();
 
@@ -28,7 +30,7 @@ private:
 	SDL_Window* window = nullptr;
 	SDL_GLContext glContext = NULL;
 	std::sr1::shared_ptr<rend::Context> rendContext;
-	// std::weak_ptr<Camera> currentCamera
+	std::shared_ptr<Camera> camera;
 
 	std::weak_ptr<Core> self;
 	std::unique_ptr<Time> time;

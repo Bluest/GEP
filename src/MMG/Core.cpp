@@ -1,4 +1,5 @@
 #include "Core.h"
+#include "Camera.h"
 #include "Environment.h"
 #include "Input.h"
 #include "Entity.h"
@@ -6,6 +7,7 @@
 std::shared_ptr<Core> Core::init(const char* _title, const int& _winW, const int& _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
+	core->camera = std::make_shared<Camera>(_winW, _winH);
 	core->self = core;
 	core->time = std::make_unique<Time>();
 	core->input = std::make_shared<Input>();
@@ -81,6 +83,11 @@ std::shared_ptr<Entity> Core::addEntity()
 std::sr1::shared_ptr<rend::Context> Core::getRendContext()
 {
 	return rendContext;
+}
+
+std::shared_ptr<Camera> Core::getCamera()
+{
+	return camera;
 }
 
 float Core::getDeltaTime()

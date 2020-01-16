@@ -15,12 +15,22 @@ void Player::onUpdate()
 
 	if (getCore()->getInput()->isKeyHeld(SDLK_w))
 	{
-		getEntity()->transform.position.z += 5.0f * getCore()->getDeltaTime();
+		getCore()->getCamera()->move({ 0.0f, 0.0f, 5.0f * getCore()->getDeltaTime() });
 	}
 
 	if (getCore()->getInput()->isKeyHeld(SDLK_s))
 	{
-		getEntity()->transform.position.z -= 5.0f * getCore()->getDeltaTime();
+		getCore()->getCamera()->move({ 0.0f, 0.0f, -5.0f * getCore()->getDeltaTime() });
+	}
+
+	if (getCore()->getInput()->isKeyHeld(SDLK_a))
+	{
+		getCore()->getCamera()->move({ 5.0f * getCore()->getDeltaTime(), 0.0f, 0.0f });
+	}
+
+	if (getCore()->getInput()->isKeyHeld(SDLK_d))
+	{
+		getCore()->getCamera()->move({ -5.0f * getCore()->getDeltaTime(), 0.0f, 0.0f });
 	}
 
 	if (getCore()->getInput()->isMousePressed(SDL_BUTTON_LEFT))
