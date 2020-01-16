@@ -39,10 +39,67 @@ bool Input::isKeyReleased(const SDL_Keycode& _key)
 	return false;
 }
 
+bool Input::isMouseHeld(const int& _button)
+{
+	for (auto it = mouseHeld.begin(); it != mouseHeld.end(); it++)
+	{
+		if (*it == _button)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Input::isMousePressed(const int& _button)
+{
+	for (auto it = mousePressed.begin(); it != mousePressed.end(); it++)
+	{
+		if (*it == _button)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+bool Input::isMouseReleased(const int& _button)
+{
+	for (auto it = mouseReleased.begin(); it != mouseReleased.end(); it++)
+	{
+		if (*it == _button)
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+int Input::getMouseX()
+{
+	int x = NULL;
+	SDL_GetMouseState(&x, nullptr);
+
+	return x;
+}
+
+int Input::getMouseY()
+{
+	int y = NULL;
+	SDL_GetMouseState(nullptr, &y);
+
+	return y;
+}
+
 bool Input::processInput(SDL_Event* _event)
 {
 	keysPressed.clear();
 	keysReleased.clear();
+	mousePressed.clear();
+	mouseReleased.clear();
 
 	while (SDL_PollEvent(_event))
 	{
@@ -50,6 +107,8 @@ bool Input::processInput(SDL_Event* _event)
 		{
 		case SDL_KEYDOWN: { processKeyDown(_event->key.keysym.sym); break; }
 		case SDL_KEYUP: { processKeyUp(_event->key.keysym.sym); break; }
+		case SDL_MOUSEBUTTONDOWN: { processMouseDown(_event->button.button); break; }
+		case SDL_MOUSEBUTTONUP: { processMouseUp(_event->button.button); break; }
 		case SDL_QUIT: { return false; }
 		}
 	}
@@ -59,7 +118,11 @@ bool Input::processInput(SDL_Event* _event)
 
 void Input::processKeyDown(const SDL_Keycode& _key)
 {
-	keysPressed.push_back(_key);
+	// If the key is not currently held down, register a key press
+	if (std::find(keysHeld.begin(), keysHeld.end(), _key) == keysHeld.end())
+	{
+		keysPressed.push_back(_key);
+	}
 
 	// If the key is not already in the keysHeld list, add it
 	if (std::find(keysHeld.begin(), keysHeld.end(), _key) == keysHeld.end())
@@ -72,4 +135,16 @@ void Input::processKeyUp(const SDL_Keycode& _key)
 {
 	keysReleased.push_back(_key);
 	keysHeld.remove(_key);
+}
+
+void Input::processMouseDown(const int& _button)
+{
+	mousePressed.push_back(_button);
+	mouseHeld.push_back(_button);
+}
+
+void Input::processMouseUp(const int& _button)
+{
+	mouseReleased.push_back(_button);
+	mouseHeld.remove(_button);
 }
