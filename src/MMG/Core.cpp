@@ -7,16 +7,16 @@
 std::shared_ptr<Core> Core::init(const char* _title, const int& _winW, const int& _winH)
 {
 	std::shared_ptr<Core> core = std::make_shared<Core>();
-	core->camera = std::make_shared<Camera>(_winW, _winH);
 	core->self = core;
 	core->time = std::make_unique<Time>();
 	core->input = std::make_shared<Input>();
+	core->camera = std::make_shared<Camera>(_winW, _winH);
 
-	// SDL
+	// Initialise SDL
 	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		throw rend::Exception("Failed to initialise SDL");
 
-	// Window
+	// Create SDL window
 	core->window = SDL_CreateWindow(_title,
 		SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
 		_winW, _winH, SDL_WINDOW_OPENGL);
@@ -32,6 +32,27 @@ std::shared_ptr<Core> Core::init(const char* _title, const int& _winW, const int
 
 	// rend context
 	core->rendContext = rend::Context::initialize();
+
+	// OpenAL
+	core->alcDevice = alcOpenDevice(nullptr);
+	
+	if (!core->alcDevice)
+		throw rend::Exception("Failed to create OpenAL device");
+
+	core->alcContext = alcCreateContext(core->alcDevice, nullptr);
+
+	if (!core->alcContext)
+	{
+		alcCloseDevice(core->alcDevice);
+		throw rend::Exception("Failed to create OpenAL context");
+	}
+
+	if (!alcMakeContextCurrent(core->alcContext))
+	{
+		alcDestroyContext(core->alcContext);
+		alcCloseDevice(core->alcDevice);
+		throw rend::Exception("Failed to set the OpenAL context");
+	}
 
 	return core;
 }
@@ -102,6 +123,12 @@ std::shared_ptr<Input> Core::getInput()
 
 void Core::quit()
 {
+	// Clean up OpenAL
+	alcMakeContextCurrent(nullptr);
+	alcDestroyContext(alcContext);
+	alcCloseDevice(alcDevice);
+
+	// Clean up SDL
 	SDL_GL_DeleteContext(glContext);
 	SDL_DestroyWindow(window);
 	SDL_Quit();

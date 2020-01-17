@@ -26,30 +26,36 @@ public:
 	Transform transform;
 
 	template <typename T>
-	void addComponent()
+	std::shared_ptr<T> addComponent()
 	{
 		std::shared_ptr<T> component = std::make_shared<T>();
 		component->entity = self;
 		components.push_back(component);
 		component->init();
+
+		return component;
 	}
 
 	template <typename T, typename A>
-	void addComponent(A _a)
+	std::shared_ptr<T> addComponent(A _a)
 	{
 		std::shared_ptr<T> component = std::make_shared<T>();
 		component->entity = self;
 		components.push_back(component);
 		component->init(_a);
+
+		return component;
 	}
 
 	template <typename T, typename A, typename B>
-	void addComponent(A _a, B _b)
+	std::shared_ptr<T> addComponent(A _a, B _b)
 	{
 		std::shared_ptr<T> component = std::make_shared<T>();
 		component->entity = self;
 		components.push_back(component);
 		component->init(_a, _b);
+
+		return component;
 	}
 
 	template <class T>

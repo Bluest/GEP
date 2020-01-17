@@ -54,12 +54,14 @@ add_library(MMG
 	src/MMG/MeshRenderer.cpp
 	src/MMG/SoundSource.h
 	src/MMG/SoundSource.cpp
+	src/MMG/BoxCollider.h
+	src/MMG/BoxCollider.cpp
 )
-target_link_libraries(MMG rend SDL2 OpenAL32)
+target_link_libraries(MMG rend SDL2 SDL2main OpenAL32)
 
 add_executable(game
-	src/game/Player.h
-	src/game/Player.cpp
+	src/game/Cat.h
+	src/game/Cat.cpp
 	src/game/main.cpp
 )
 target_link_libraries(game MMG)

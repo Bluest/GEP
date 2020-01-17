@@ -30,8 +30,6 @@
  *  Redefine main() on some platforms so that it is called by SDL.
  */
 
-// KP: Remove need for SDL2main
-#define SDL_MAIN_HANDLED
 #ifndef SDL_MAIN_HANDLED
 #if defined(__WIN32__)
 /* On Windows SDL provides WinMain(), which parses the command line and passes

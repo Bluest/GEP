@@ -16,5 +16,6 @@
 #include "Component.h"
 #include "MeshRenderer.h"
 #include "SoundSource.h"
+#include "BoxCollider.h"
 
 #endif // _MMG_H_
