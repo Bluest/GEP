@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "Cat.h"
+#include "Musician.h"
+#include "CameraController.h"
 
 void load(ResourceManager& _resources)
 {
@@ -22,6 +24,9 @@ int main(int argc, char* argv[])
 
 	load(resources);
 
+	std::shared_ptr<Entity> camera = core->addEntity();
+	camera->addComponent<CameraController>();
+
 	std::shared_ptr<Entity> curuthers = core->addEntity();
 	curuthers->addComponent<Cat>();
 	curuthers->addComponent<MeshRenderer>(
@@ -32,16 +37,13 @@ int main(int argc, char* argv[])
 	voice->addSound(resources.use<Sound>("TheHorn"));
 
 	std::shared_ptr<Entity> buddy = core->addEntity();
+	buddy->addComponent<Musician>();
 	buddy->addComponent<MeshRenderer>(
 		resources.use<Model>("IvysaurModel"),
 		resources.use<Material>("IvysaurMaterial"));
 
 	std::shared_ptr<SoundSource> music = buddy->addComponent<SoundSource>();
 	music->addSound(resources.use<Sound>("Tune"));
-	music->play("Tune");
-
-	curuthers->transform.position.y += 1.0f;
-	curuthers->transform.position.z -= 15.0f;
 
 	std::cout << std::endl << "Hi! Use WASD to move around, Q to go down and E and go up." << std::endl;
 	std::cout << "Left clicking will play the horn." << std::endl;

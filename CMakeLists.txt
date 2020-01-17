@@ -62,6 +62,10 @@ target_link_libraries(MMG rend SDL2 SDL2main OpenAL32)
 add_executable(demo
 	src/demo/Cat.h
 	src/demo/Cat.cpp
+	src/demo/Musician.h
+	src/demo/Musician.cpp
+	src/demo/CameraController.h
+	src/demo/CameraController.cpp
 	src/demo/main.cpp
 )
 target_link_libraries(demo MMG)
