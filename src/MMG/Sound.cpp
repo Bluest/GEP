@@ -19,18 +19,25 @@ Sound::~Sound()
 
 void Sound::onLoad(const std::string& _path)
 {
-	std::cout << _path << "\"" << std::endl;
+	try
+	{
+		std::cout << _path << "\"" << std::endl;
 
-	alGenBuffers(1, &bufferId);
+		alGenBuffers(1, &bufferId);
 
-	ALenum format = 0;
-	ALsizei freq = 0;
-	std::vector<char> bufferData;
+		ALenum format = 0;
+		ALsizei freq = 0;
+		std::vector<char> bufferData;
 
-	load_ogg(_path, bufferData, format, freq);
+		load_ogg(_path, bufferData, format, freq);
 
-	alBufferData(bufferId, format, &bufferData.at(0),
-		static_cast<ALsizei>(bufferData.size()), freq);
+		alBufferData(bufferId, format, &bufferData.at(0),
+			static_cast<ALsizei>(bufferData.size()), freq);
+	}
+	catch (rend::Exception & e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
 
 ALuint Sound::getBufferId()

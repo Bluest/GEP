@@ -5,13 +5,25 @@
 
 class Core;
 
+/** \brief Base resource class.
+*/
 class Resource
 {
 public:
+	/** \brief The resource stores its name and a pointer to Core.
+		\param _core Pointer to Core
+		\param _name The unique name of the resource
+	*/
 	Resource(const std::shared_ptr<Core>& _core, const std::string& _name);
 
-	// Abstract: All derived resources should have an onLoad function
+	/** \brief Abstract: All derived resources must have an onLoad(_path) method.
+		\param _path Relative file path to load from 
+	*/
 	virtual void onLoad(const std::string& _path) = 0;
+
+	/** \brief Getter for the resource's name.
+		\return The resource's identifying name
+	*/
 	std::string getName();
 
 protected:

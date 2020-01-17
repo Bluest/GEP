@@ -1,6 +1,6 @@
 #include <Environment.h>
 
-void Time::start(float _fpsCap)
+void Time::start(const float& _fpsCap)
 {
 	prev = float(SDL_GetTicks());
 	target = 1.0f / _fpsCap;

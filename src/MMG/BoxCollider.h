@@ -4,6 +4,8 @@
 
 #include "Component.h"
 
+/** \brief Component that detects axis-aligned bounding box collisions.
+*/
 class BoxCollider : public Component
 {
 public:

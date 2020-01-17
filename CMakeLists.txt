@@ -59,22 +59,22 @@ add_library(MMG
 )
 target_link_libraries(MMG rend SDL2 SDL2main OpenAL32)
 
-add_executable(game
-	src/game/Cat.h
-	src/game/Cat.cpp
-	src/game/main.cpp
+add_executable(demo
+	src/demo/Cat.h
+	src/demo/Cat.cpp
+	src/demo/main.cpp
 )
-target_link_libraries(game MMG)
+target_link_libraries(demo MMG)
 
-add_custom_command(TARGET game
+add_custom_command(TARGET demo
 	POST_BUILD
 	COMMAND ${CMAKE_COMMAND} -E copy
 		"${PROJECT_SOURCE_DIR}/contrib/lib/SDL2.dll"
-		$<TARGET_FILE_DIR:game>
+		$<TARGET_FILE_DIR:demo>
 	COMMAND ${CMAKE_COMMAND} -E copy
 		"${PROJECT_SOURCE_DIR}/contrib/lib/glew32.dll"
-		$<TARGET_FILE_DIR:game>
+		$<TARGET_FILE_DIR:demo>
 	COMMAND ${CMAKE_COMMAND} -E copy
 		"${PROJECT_SOURCE_DIR}/contrib/lib/OpenAL32.dll"
-		$<TARGET_FILE_DIR:game>
+		$<TARGET_FILE_DIR:demo>
 )

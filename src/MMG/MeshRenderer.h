@@ -1,6 +1,3 @@
-#ifndef _MESH_RENDERER_H_
-#define _MESH_RENDERER_H_
-
 #include "rend.h"
 
 #include "Component.h"
@@ -8,9 +5,15 @@
 class Model;
 class Material;
 
+/** \brief Component that render's an Entity's model and material.
+*/
 class MeshRenderer : public Component
 {
 public:
+	/** \brief Sets the model and material to render.
+		\param _model The entity's model
+		\param _material The entity's material
+	*/
 	void init(const std::shared_ptr<Model>& _model, const std::shared_ptr<Material>& _material);
 
 private:
@@ -26,5 +29,3 @@ private:
 
 	void onDraw();
 };
-
-#endif // _MESH_RENDERER_H_

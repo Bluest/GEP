@@ -96,6 +96,7 @@ int Input::getMouseY()
 
 bool Input::processInput(SDL_Event* _event)
 {
+	// Clear the frame-specific lists at the start of the input frame
 	keysPressed.clear();
 	keysReleased.clear();
 	mousePressed.clear();
